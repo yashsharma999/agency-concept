@@ -21,22 +21,25 @@ export default function ServicesList() {
         }
       },
       drop: (item, monitor) => {
-        setOpenServices((prev) => [...prev, item]);
-
-        setCart(cart.filter((service) => service.id !== item.id));
+        handleDrop(item);
       },
     }),
     [cart, openServices]
   );
 
+  const handleDrop = (item) => {
+    setOpenServices((prev) => [...prev, item]);
+    setCart(cart.filter((service) => service.id !== item.id));
+  };
+
   return (
     <section
       ref={ref}
-      className='mt-8 p-2 rounded-md flex gap-2 flex-wrap h-[500px] bg-slate-100'
+      className='mt-8 p-2 mx-auto rounded-md flex gap-2 flex-wrap min-h-[400px] bg-slate-100'
     >
       {openServices.map((item) => {
         return (
-          <div className='max-w-[300px]' key={item.id}>
+          <div className='w-[300px]' key={item.id}>
             <ServiceCard data={item} />
           </div>
         );

@@ -1,6 +1,7 @@
 import { useServiceContext } from '@/providers/ServicesContext';
 import { useDrop } from 'react-dnd';
 import ServiceCard from './common/ServiceCard';
+import { Button } from './ui/button';
 
 export default function ServicesDropContainer() {
   const { openServices, cart, setCart, setOpenServices } = useServiceContext();
@@ -34,16 +35,45 @@ export default function ServicesDropContainer() {
     [cart, openServices]
   );
 
+  const handleCostRange = () => {
+    let lowerLimit = 0;
+    let upperLimit = 0;
+
+    cart?.forEach((item) => {
+      lowerLimit += item.price[0];
+      upperLimit += item.price[1];
+    });
+
+    return {
+      lowerLimit,
+      upperLimit,
+    };
+  };
+
   return (
     <div
       ref={ref}
-      className={`w-[40%] h-full bg-slate-100 p-2 flex flex-col gap-2
+      className={`h-screen overflow-y-scroll w-[450px] fixed top-0 right-0 bg-slate-100 p-2 flex flex-col gap-2
       transition delay-100 ${isDroppable && 'bg-slate-200'}
       `}
     >
       {cart?.map((item) => (
-        <ServiceCard key={item.id} data={item} minimalView={true} />
+        <ServiceCard
+          key={item.id}
+          style={{ height: 'auto' }}
+          data={item}
+          minimalView={true}
+        />
       ))}
+      <div className='bg-white p-4 pb-6'>
+        <div className='flex items-center justify-between'>
+          <h1 className='text-[42px]'>💸</h1>
+          <h1 className='text-[42px]'>{`${handleCostRange().lowerLimit}-${
+            handleCostRange().upperLimit
+          }`}</h1>
+        </div>
+        <Button className='w-full mt-8'>Next</Button>
+      </div>
     </div>
   );
 }

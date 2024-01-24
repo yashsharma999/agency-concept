@@ -1,6 +1,7 @@
 import { useServiceContext } from '@/providers/ServicesContext';
 import { useDrop } from 'react-dnd';
 import ServiceCard from './common/ServiceCard';
+import HandleNext from './HandleNext';
 import { Button } from './ui/button';
 
 export default function ServicesDropContainer() {
@@ -35,21 +36,6 @@ export default function ServicesDropContainer() {
     [cart, openServices]
   );
 
-  const handleCostRange = () => {
-    let lowerLimit = 0;
-    let upperLimit = 0;
-
-    cart?.forEach((item) => {
-      lowerLimit += item.price[0];
-      upperLimit += item.price[1];
-    });
-
-    return {
-      lowerLimit,
-      upperLimit,
-    };
-  };
-
   return (
     <div
       ref={ref}
@@ -65,15 +51,7 @@ export default function ServicesDropContainer() {
           minimalView={true}
         />
       ))}
-      <div className='bg-white p-4 pb-6'>
-        <div className='flex items-center justify-between'>
-          <h1 className='text-[42px]'>💸</h1>
-          <h1 className='text-[42px]'>{`${handleCostRange().lowerLimit}-${
-            handleCostRange().upperLimit
-          }`}</h1>
-        </div>
-        <Button className='w-full mt-8'>Next</Button>
-      </div>
+      <HandleNext cart={cart} />
     </div>
   );
 }

@@ -21,19 +21,21 @@ export default function ViewDetails({ data }) {
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>
-            {title}
-            &nbsp;
-            <span className='text-[30px]'>{icon}</span>
-          </DrawerTitle>
-          <DrawerDescription>{description}</DrawerDescription>
-        </DrawerHeader>
-        <DrawerFooter>
-          <DrawerClose asChild>
-            <Button variant='outline'>Close</Button>
-          </DrawerClose>
-        </DrawerFooter>
+        <div className='w-[800px] mx-auto'>
+          <DrawerHeader>
+            <DrawerTitle>
+              {title}
+              &nbsp;
+              <span className='text-[30px]'>{icon}</span>
+            </DrawerTitle>
+            <DrawerDescription>{description}</DrawerDescription>
+          </DrawerHeader>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button variant='outline'>Close</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </div>
       </DrawerContent>
     </Drawer>
   );

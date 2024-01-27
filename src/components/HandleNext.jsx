@@ -24,6 +24,7 @@ import {
 } from './ui/form';
 import { useState } from 'react';
 import Image from 'next/image';
+import axios from 'axios';
 
 const schema = yup
   .object({
@@ -57,7 +58,15 @@ export default function HandleNext({ cart }) {
 
   const handleLead = (values) => {
     console.log(values);
+    sendEmail(values.email);
     setState(1);
+  };
+
+  const sendEmail = async (email) => {
+    const resp = await axios.post('api/send', {
+      recipientEmail: email,
+    });
+    console.log('res', resp);
   };
 
   return (

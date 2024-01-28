@@ -65,6 +65,7 @@ export default function HandleNext({ cart }) {
   const sendEmail = async (email) => {
     const resp = await axios.post('api/send', {
       recipientEmail: email,
+      cart: cart,
     });
     console.log('res', resp);
   };

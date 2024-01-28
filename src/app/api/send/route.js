@@ -1,4 +1,5 @@
 import NewLead from '@/components/emailTemplates/newLead';
+import LeadEmail from '../../../react-email-starter/emails';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -6,7 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request) {
   try {
     const requestBody = await request.json();
-    const { recipientEmail } = requestBody;
+    const { recipientEmail, cart } = requestBody;
 
     if (!recipientEmail) {
       throw new Error('Recipient email is required');
@@ -15,8 +16,8 @@ export async function POST(request) {
     const data = await resend.emails.send({
       from: 'Yash <onboarding@yashsharma.tech>',
       to: [recipientEmail],
-      subject: 'Hello New Lead',
-      react: NewLead,
+      subject: 'Acknowledgment of Your Inquiry',
+      react: <LeadEmail recipientEmail={recipientEmail} cart={cart} />,
     });
 
     return Response.json(data);

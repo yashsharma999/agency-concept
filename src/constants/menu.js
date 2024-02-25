@@ -1,4 +1,5 @@
 const { default: ContactUsSheet } = require('@/components/ContactUsSheet');
+const { default: CartBtn } = require('@/components/CartBtn');
 const { Button } = require('@/components/ui/button');
 const { default: Link } = require('next/link');
 
@@ -41,5 +42,17 @@ export const appMenu = [
   {
     label: 'Deals',
     href: '/deals',
+  },
+  {
+    custom: true,
+    element: <CartBtn />,
+  },
+  {
+    custom: true,
+    element: (
+      <Link href={'/login'}>
+        <Button>Login</Button>
+      </Link>
+    ),
   },
 ];

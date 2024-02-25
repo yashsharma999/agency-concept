@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-const heroFont = localFont({
+export const heroFont = localFont({
   src: '../fonts/CalSans-SemiBold.woff2',
 });
 

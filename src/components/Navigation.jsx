@@ -41,7 +41,11 @@ export default function Navigation({ menu }) {
         {menu?.map((menu, i) => {
           if (menu.custom) {
             //custom menu item; button etc.
-            return <div key={i}>{menu.element}</div>;
+            return (
+              <div key={i} className='flex'>
+                {menu.element}
+              </div>
+            );
           } else {
             return (
               <NavigationMenu key={i}>

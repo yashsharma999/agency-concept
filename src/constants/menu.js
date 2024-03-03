@@ -1,3 +1,5 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
+
 const { default: ContactUsSheet } = require('@/components/ContactUsSheet');
 const { default: CartBtn } = require('@/components/CartBtn');
 const { Button } = require('@/components/ui/button');
@@ -50,9 +52,19 @@ export const appMenu = [
   {
     custom: true,
     element: (
-      <Link href={'/login'}>
-        <Button>Login</Button>
-      </Link>
+      <div className='flex'>
+        <SignedIn>
+          {/* Mount the UserButton component */}
+          <UserButton />
+        </SignedIn>
+
+        <SignedOut>
+          <Button>
+            {/* Signed out users get sign in button */}
+            <SignInButton />
+          </Button>
+        </SignedOut>
+      </div>
     ),
   },
 ];

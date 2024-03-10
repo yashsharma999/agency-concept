@@ -2,7 +2,6 @@ import CartBtn from '@/components/CartBtn';
 import Navigation from '@/components/Navigation';
 import { appMenu } from '@/constants';
 import AppProviders from '@/providers';
-import { UserButton } from '@clerk/nextjs';
 import { Montserrat } from 'next/font/google';
 export const montserrat = Montserrat({ subsets: ['latin'] });
 

@@ -2,6 +2,7 @@ import { Inter, Montserrat } from 'next/font/google';
 import './globals.css';
 import bgTexture from '../assets/bgTexture.png';
 import { ClerkProvider } from '@clerk/nextjs';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 export const montserrat = Montserrat({ subsets: ['latin'] });
@@ -15,7 +16,10 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang='en'>
-        <body className={`${inter.className}`}>{children}</body>
+        <body className={`${inter.className}`}>
+          {children}
+          <Toaster />
+        </body>
       </html>
     </ClerkProvider>
   );

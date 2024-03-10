@@ -1,26 +1,44 @@
-import { currentUser } from '@clerk/nextjs';
 import { PrismaClient } from '@prisma/client';
 import React from 'react';
-import { clerkClient } from '@clerk/nextjs';
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
+import getEmailAddress from '@/lib/getCurrentEmail';
+import RemoveFromCartBtn from './components/RemoveFromCartBtn';
+import { revalidatePath } from 'next/cache';
+import { unstable_noStore as noStore } from 'next/cache';
 
 const prisma = new PrismaClient();
 
-export default async function CartPage() {
-  const user = await currentUser();
-  const response = await clerkClient.emailAddresses.getEmailAddress(
-    user?.primaryEmailAddressId
-  );
+const getCart = async () => {
+  noStore();
+  const email = await getEmailAddress();
 
   const data = await prisma.cartItem.findMany({
     where: {
-      email: response?.emailAddress,
+      email: email,
     },
   });
 
-  console.log('cart data', data);
+  return data;
+};
+
+export default async function CartPage() {
+  noStore();
+
+  const data = await getCart();
+
+  const removeItem = async (id) => {
+    'use server';
+
+    const item = await prisma.cartItem.delete({
+      where: {
+        cartItemId: id,
+      },
+    });
+
+    revalidatePath('/cart');
+  };
 
   return (
     <section className='mt-4'>
@@ -31,9 +49,9 @@ export default async function CartPage() {
             return (
               <div
                 key={item.cartItemId}
-                className='border-[1px] border-slate-200 flex items-start p-4 rounded-md gap-4'
+                className='border-[1px] mb-4 border-slate-200 flex items-start p-4 rounded-md gap-4'
               >
-                <div className='min-w-20 min-h-20 relative '>
+                <div className='min-w-20 min-h-[100px] relative '>
                   <Image
                     src={`/webDev.jpg`}
                     alt='cart-item-img'
@@ -47,10 +65,14 @@ export default async function CartPage() {
                     <h1 className='font-bold text-lg'>{item?.name || ''}</h1>
                     <p className='text-slate-500'>{item?.description || ''}</p>
                   </div>
-                  <div className='h-full flex flex-col items-end min-w-[100px]'>
+                  <div className='h-full min-h-[100px] flex flex-col justify-between items-end min-w-[100px]'>
                     <p className='font-bold text-lg'>{`$ ${
                       item?.price || `0.00`
                     }`}</p>
+                    <RemoveFromCartBtn
+                      id={item.cartItemId}
+                      removeProduct={removeItem}
+                    />
                   </div>
                 </div>
               </div>

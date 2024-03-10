@@ -6,6 +6,8 @@ const services = [
     icon: '🎨',
     categories: [2, 3],
     price: [250, 1000],
+    originalPrice: 600,
+    sellingPrice: 350,
   },
   {
     id: 2,
@@ -14,6 +16,8 @@ const services = [
     categories: [1],
     icon: '🤖',
     price: [500, 2500],
+    originalPrice: 600,
+    sellingPrice: 350,
   },
   {
     id: 3,
@@ -22,6 +26,8 @@ const services = [
     categories: [1],
     icon: '📲',
     price: [500, 2500],
+    originalPrice: 600,
+    sellingPrice: 350,
   },
   {
     id: 4,
@@ -30,6 +36,8 @@ const services = [
     categories: [2],
     icon: `⚜️`,
     price: [100, 500],
+    originalPrice: 600,
+    sellingPrice: 350,
   },
   {
     id: 5,
@@ -38,6 +46,8 @@ const services = [
     categories: [3, 2],
     icon: '📣',
     price: [100, 1000],
+    originalPrice: 600,
+    sellingPrice: 350,
   },
   // {
   //   id: 6,
@@ -54,6 +64,8 @@ const services = [
     categories: [1],
     icon: '🛒',
     price: [2500, 10000],
+    originalPrice: 600,
+    sellingPrice: 350,
   },
 ];
 

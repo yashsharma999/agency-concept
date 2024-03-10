@@ -1,6 +1,8 @@
+import AddToCartBtn from '@/app/(dashboard)/cart/components/AddToCartBtn';
+import getEmailAddress from '@/lib/getCurrentEmail';
+import { PrismaClient } from '@prisma/client';
 import Image from 'next/image';
 import React from 'react';
-import { Button } from '../ui/button';
 import {
   Card,
   CardDescription,
@@ -8,16 +10,24 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '../ui/drawer';
 
-export default function ProductCard({ data }) {
+const prisma = new PrismaClient();
+
+export default async function ProductCard({ data }) {
+  const addProduct = async () => {
+    'use server';
+    console.log('data to add', data);
+    const email = await getEmailAddress();
+    const cartItem = await prisma.cartItem.create({
+      data: {
+        name: data.title,
+        description: data.description,
+        price: data?.sellingPrice || 0,
+        email: email,
+      },
+    });
+  };
+
   return (
     <Card className={`max-w-[250px] flex flex-col justify-between`}>
       <CardHeader>
@@ -36,7 +46,7 @@ export default function ProductCard({ data }) {
           <p>{`$ ${data?.price[0]}`}</p>
           <p className='line-through text-sm text-slate-400'>{`$ ${data?.price[1]}`}</p>
         </div>
-        <Button>Add to cart</Button>
+        <AddToCartBtn data={data} addProduct={addProduct} />
       </CardFooter>
     </Card>
   );

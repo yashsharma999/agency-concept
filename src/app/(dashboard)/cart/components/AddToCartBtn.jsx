@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { toast } from 'sonner';
 
-export default async function AddToCartBtn({ data, addProduct }) {
+export default function AddToCartBtn({ data, addProduct }) {
   const router = useRouter();
   return (
     <Button

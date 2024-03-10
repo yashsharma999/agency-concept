@@ -1,6 +1,7 @@
 import AddToCartBtn from '@/app/(dashboard)/cart/components/AddToCartBtn';
 import getEmailAddress from '@/lib/getCurrentEmail';
 import { PrismaClient } from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
 import React from 'react';
 import {
@@ -16,7 +17,6 @@ const prisma = new PrismaClient();
 export default async function ProductCard({ data }) {
   const addProduct = async () => {
     'use server';
-    console.log('data to add', data);
     const email = await getEmailAddress();
     const cartItem = await prisma.cartItem.create({
       data: {
@@ -26,6 +26,8 @@ export default async function ProductCard({ data }) {
         email: email,
       },
     });
+
+    revalidatePath('/cart');
   };
 
   return (

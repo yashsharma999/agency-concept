@@ -6,12 +6,10 @@ import { Button } from '@/components/ui/button';
 import getEmailAddress from '@/lib/getCurrentEmail';
 import RemoveFromCartBtn from './components/RemoveFromCartBtn';
 import { revalidatePath } from 'next/cache';
-import { unstable_noStore as noStore } from 'next/cache';
 
 const prisma = new PrismaClient();
 
 const getCart = async () => {
-  noStore();
   const email = await getEmailAddress();
 
   const data = await prisma.cartItem.findMany({
@@ -24,8 +22,6 @@ const getCart = async () => {
 };
 
 export default async function CartPage() {
-  noStore();
-
   const data = await getCart();
 
   const removeItem = async (id) => {

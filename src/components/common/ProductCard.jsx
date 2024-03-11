@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
 import React from 'react';
+import { urlForImage } from '../../../sanity/lib/image';
 import {
   Card,
   CardDescription,
@@ -33,20 +34,23 @@ export default async function ProductCard({ data }) {
   return (
     <Card className={`max-w-[250px] flex flex-col justify-between`}>
       <CardHeader>
-        <Image
-          src={'/webDev.jpg'}
-          className='w-full rounded-md mb-1'
-          width={400}
-          height={300}
-          alt='web dev'
-        />
+        <div className='relative h-[100px] w-full'>
+          <Image
+            src={urlForImage(data.image)}
+            className='w-full rounded-md mb-1'
+            fill='auto'
+            alt='web dev'
+          />
+        </div>
         <CardTitle className='text-[18px]'>{data?.title}</CardTitle>
-        <CardDescription>{data?.description}</CardDescription>
+        <CardDescription className='line-clamp-2'>
+          {data?.description}
+        </CardDescription>
       </CardHeader>
       <CardFooter className='flex justify-between'>
         <div className='flex flex-col'>
-          <p>{`$ ${data?.price[0]}`}</p>
-          <p className='line-through text-sm text-slate-400'>{`$ ${data?.price[1]}`}</p>
+          <p>{`$ ${data?.selling_price}`}</p>
+          <p className='line-through text-sm text-slate-400'>{`$ ${data?.original_price}`}</p>
         </div>
         <AddToCartBtn data={data} addProduct={addProduct} />
       </CardFooter>

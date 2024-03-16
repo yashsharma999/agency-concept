@@ -13,7 +13,6 @@ export default async function FeaturedPage() {
       },
     }
   );
-  // console.log('sanity data', data);
 
   return (
     <div className='grid grid-cols-4 gap-8 mt-8 mx-auto'>

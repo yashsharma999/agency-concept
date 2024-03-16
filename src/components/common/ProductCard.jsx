@@ -1,5 +1,6 @@
 import AddToCartBtn from '@/app/(dashboard)/cart/components/AddToCartBtn';
 import getEmailAddress from '@/lib/getCurrentEmail';
+import { PortableText } from '@portabletext/react';
 import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
@@ -23,7 +24,7 @@ export default async function ProductCard({ data }) {
       data: {
         name: data.title,
         description: data.description,
-        price: data?.sellingPrice || 0,
+        price: data?.selling_price || 0,
         email: email,
       },
     });

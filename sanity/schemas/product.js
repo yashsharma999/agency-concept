@@ -11,9 +11,24 @@ export default {
       type: 'string',
     },
     {
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+    },
+    {
       name: 'description',
       title: 'Description',
-      type: 'text',
+      type: 'string',
+    },
+    {
+      name: 'details',
+      title: 'Details',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
     },
     {
       name: 'original_price',
@@ -34,4 +49,7 @@ export default {
       },
     },
   ],
+  initialValue: {
+    featured: false,
+  },
 };

@@ -24,6 +24,11 @@ const getCart = async () => {
 export default async function CartPage() {
   const data = await getCart();
 
+  let total = 0;
+  data?.forEach((item) => {
+    total += item.price;
+  });
+
   const removeItem = async (id) => {
     'use server';
 
@@ -81,7 +86,7 @@ export default async function CartPage() {
             <Separator className='my-4' />
             <div className='flex justify-between items-center'>
               <h3>Subtotal</h3>
-              <p>500</p>
+              <p>{`$ ${total}`}</p>
             </div>
             <div className='flex justify-between items-center'>
               <h3>Discount/Rewards</h3>
@@ -90,7 +95,7 @@ export default async function CartPage() {
             <Separator className='my-4' />
             <div className='flex justify-between items-center'>
               <h3>Total</h3>
-              <p>{`$ ${500}`}</p>
+              <p>{`$ ${total}`}</p>
             </div>
           </div>
           <Button className='w-full mt-4'>Checkout</Button>

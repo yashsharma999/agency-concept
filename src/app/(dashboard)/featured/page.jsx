@@ -5,7 +5,7 @@ import { client } from '../../../../sanity/lib/client';
 
 export default async function FeaturedPage() {
   const data = await client.fetch(
-    `*[_type == "product"]`,
+    `*[_type == "product" && featured != false]`,
     {},
     {
       next: {

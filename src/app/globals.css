@@ -78,8 +78,14 @@
 .product-details h4 {
   font-size: 20px;
   font-weight: bold;
+  margin: 1rem 0 0.5rem;
+}
+.product-details h5 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem;
 }
 
 .product-details ol {
-  list-style: decimal-leading-zero;
+  list-style-type: decimal;
 }

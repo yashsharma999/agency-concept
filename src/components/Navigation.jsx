@@ -1,40 +1,17 @@
 'use client';
 
-import { homeNavMenu } from '@/constants';
 import Link from 'next/link';
-import ContactUsSheet from './ContactUsSheet';
-import { Button } from './ui/button';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from './ui/navigation-menu';
-
-// const navMenu = [
-//   {
-//     lable: 'Home',
-//     href: '/',
-//   },
-//   {
-//     lable: 'How it works',
-//     href: '/how-it-works',
-//   },
-//   {
-//     custom: true,
-//     element: <ContactUsSheet />,
-//   },
-//   {
-//     custom: true,
-//     element: (
-//       <Link href={'/app'}>
-//         <Button>Go to App</Button>
-//       </Link>
-//     ),
-//   },
-// ];
+import { usePathname } from 'next/navigation';
 
 export default function Navigation({ menu }) {
+  const pathname = usePathname();
+
   return (
     <div className='flex justify-center items-center'>
       <ul className='bg-white flex gap-4 py-4 px-8 border-[1px] border-slate-100 rounded-lg shadow-sm'>
@@ -52,6 +29,10 @@ export default function Navigation({ menu }) {
                 <NavigationMenuItem>
                   <Link href={menu.href} legacyBehavior passHref>
                     <NavigationMenuLink
+                      style={{
+                        background:
+                          pathname.includes(menu.href) && 'whitesmoke',
+                      }}
                       className={navigationMenuTriggerStyle()}
                     >
                       {menu.label}

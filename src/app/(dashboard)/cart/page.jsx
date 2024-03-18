@@ -46,42 +46,48 @@ export default async function CartPage() {
       <h1 className='font-bold text-xl mb-4'>Cart</h1>
       <div className='grid grid-cols-10 gap-2'>
         <div className='col-span-7'>
-          {data?.map((item) => {
-            return (
-              <div
-                key={item.cartItemId}
-                className='border-[1px] mb-4 border-slate-200 flex items-start p-4 rounded-md gap-4'
-              >
-                <div className='min-w-20 min-h-[100px] relative '>
-                  <Image
-                    src={`/webDev.jpg`}
-                    alt='cart-item-img'
-                    fill='auto'
-                    className='rounded-md'
-                  />
-                </div>
-
-                <div className='grow flex justify-between gap-4'>
-                  <div>
-                    <h1 className='font-bold text-lg'>{item?.name || ''}</h1>
-                    <p className='text-slate-500'>{item?.description || ''}</p>
-                  </div>
-                  <div className='h-full min-h-[100px] flex flex-col justify-between items-end min-w-[100px]'>
-                    <p className='font-bold text-lg'>{`$ ${
-                      item?.price || `0.00`
-                    }`}</p>
-                    <RemoveFromCartBtn
-                      id={item.cartItemId}
-                      removeProduct={removeItem}
+          {data?.length ? (
+            data?.map((item) => {
+              return (
+                <div
+                  key={item.cartItemId}
+                  className='border-[1px] mb-4 border-slate-200 flex items-start p-4 rounded-md gap-4'
+                >
+                  <div className='min-w-20 min-h-[100px] relative '>
+                    <Image
+                      src={`/webDev.jpg`}
+                      alt='cart-item-img'
+                      fill='auto'
+                      className='rounded-md'
                     />
                   </div>
+
+                  <div className='grow flex justify-between gap-4'>
+                    <div>
+                      <h1 className='font-bold text-lg'>{item?.name || ''}</h1>
+                      <p className='text-slate-500'>
+                        {item?.description || ''}
+                      </p>
+                    </div>
+                    <div className='h-full min-h-[100px] flex flex-col justify-between items-end min-w-[100px]'>
+                      <p className='font-bold text-lg'>{`$ ${
+                        item?.price || `0.00`
+                      }`}</p>
+                      <RemoveFromCartBtn
+                        id={item.cartItemId}
+                        removeProduct={removeItem}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <p>No items in your cart</p>
+          )}
         </div>
         <div className='col-span-3 '>
-          <div className='bg-slate-100 rounded-md h-fit p-4'>
+          <div className='bg-white rounded-md h-fit p-4'>
             <h2 className='text-center'>Summary</h2>
             <Separator className='my-4' />
             <div className='flex justify-between items-center'>

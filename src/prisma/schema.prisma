@@ -30,4 +30,5 @@ model CartItem {
   price Int
   name String
   description String
+  productId String @unique
 }

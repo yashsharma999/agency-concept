@@ -6,10 +6,10 @@ import { Button } from '@/components/ui/button';
 import getEmailAddress from '@/lib/getCurrentEmail';
 import RemoveFromCartBtn from './components/RemoveFromCartBtn';
 import { revalidatePath } from 'next/cache';
+import prisma from '@/lib/client';
+import { removeItem } from '@/lib/actions';
 
-const prisma = new PrismaClient();
-
-const getCart = async () => {
+export const getCart = async () => {
   const email = await getEmailAddress();
 
   const data = await prisma.cartItem.findMany({
@@ -29,18 +29,6 @@ export default async function CartPage() {
     total += item.price;
   });
 
-  const removeItem = async (id) => {
-    'use server';
-
-    const item = await prisma.cartItem.delete({
-      where: {
-        cartItemId: id,
-      },
-    });
-
-    revalidatePath('/cart');
-  };
-
   return (
     <section className='mt-4'>
       <h1 className='font-bold text-xl mb-4'>Cart</h1>
@@ -51,7 +39,7 @@ export default async function CartPage() {
               return (
                 <div
                   key={item.cartItemId}
-                  className='border-[1px] mb-4 border-slate-200 flex items-start p-4 rounded-md gap-4'
+                  className='border-[1px] bg-white mb-4 border-slate-200 flex items-start p-4 rounded-md gap-4'
                 >
                   <div className='min-w-20 min-h-[100px] relative '>
                     <Image

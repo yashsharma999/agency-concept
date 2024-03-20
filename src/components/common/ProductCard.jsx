@@ -1,7 +1,7 @@
 import AddToCartBtn from '@/app/(dashboard)/cart/components/AddToCartBtn';
 import getEmailAddress from '@/lib/getCurrentEmail';
+import prisma from '@/lib/client';
 import { PortableText } from '@portabletext/react';
-import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,10 +14,15 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
-
-const prisma = new PrismaClient();
+import { getCart } from '@/app/(dashboard)/cart/page';
+import RemoveFromCartBtn from '@/app/(dashboard)/cart/components/RemoveFromCartBtn';
+import { removeItem } from '@/lib/actions';
+import { Button } from '../ui/button';
 
 export default async function ProductCard({ data }) {
+  const cartData = await getCart();
+  const inCart = cartData?.find((item) => item.productId === data?._id);
+  console.log('cart data', cartData);
   const addProduct = async () => {
     'use server';
     const email = await getEmailAddress();
@@ -27,6 +32,7 @@ export default async function ProductCard({ data }) {
         description: data.description,
         price: data?.selling_price || 0,
         email: email,
+        productId: data._id,
       },
     });
 
@@ -34,30 +40,47 @@ export default async function ProductCard({ data }) {
   };
 
   return (
-    <Link href={`/products/${data?._id}`}>
-      <Card className={`max-w-[250px] h-full flex flex-col justify-between`}>
-        <CardHeader>
-          <div className='relative h-[100px] w-full'>
-            <Image
-              src={urlForImage(data.image)}
-              className='w-full rounded-md mb-1'
-              fill='auto'
-              alt='web dev'
-            />
-          </div>
-          <CardTitle className='text-[18px]'>{data?.title}</CardTitle>
-          <CardDescription className='line-clamp-2'>
-            {data?.description}
-          </CardDescription>
-        </CardHeader>
-        <CardFooter className='flex justify-between'>
+    <Card className={`max-w-[250px] h-full flex flex-col justify-between`}>
+      <CardHeader>
+        <div className='relative h-[100px] w-full'>
+          <Image
+            src={urlForImage(data.image)}
+            className='w-full rounded-md mb-1'
+            fill='auto'
+            alt='web dev'
+          />
+        </div>
+        <CardTitle className='text-[18px]'>{data?.title}</CardTitle>
+        <CardDescription className='line-clamp-2'>
+          {data?.description}
+        </CardDescription>
+      </CardHeader>
+
+      <CardFooter className='flex flex-col gap-4'>
+        <Link href={`/products/${data?._id}`} className='w-full'>
+          <Button variant='outline' className='w-full'>
+            {' '}
+            View details
+          </Button>
+        </Link>
+        <div className='flex w-full justify-between'>
           <div className='flex flex-col'>
             <p>{`$ ${data?.selling_price}`}</p>
             <p className='line-through text-sm text-slate-400'>{`$ ${data?.original_price}`}</p>
           </div>
-          <AddToCartBtn data={data} addProduct={addProduct} />
-        </CardFooter>
-      </Card>
-    </Link>
+          {inCart ? (
+            <RemoveFromCartBtn
+              id={
+                cartData?.find((item) => item.productId === data?._id)
+                  .cartItemId
+              }
+              removeProduct={removeItem}
+            />
+          ) : (
+            <AddToCartBtn data={data} addProduct={addProduct} />
+          )}
+        </div>
+      </CardFooter>
+    </Card>
   );
 }

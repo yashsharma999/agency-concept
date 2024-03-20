@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { toast } from 'sonner';
 
-export default function AddToCartBtn({ data, addProduct }) {
+export default function AddToCartBtn({ data, addProduct, className }) {
   const router = useRouter();
   return (
     <Button
@@ -19,6 +19,7 @@ export default function AddToCartBtn({ data, addProduct }) {
           },
         });
       }}
+      className={className ? className : ''}
     >
       Add to cart
     </Button>

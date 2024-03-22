@@ -8,6 +8,7 @@ import RemoveFromCartBtn from './components/RemoveFromCartBtn';
 import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/client';
 import { removeItem } from '@/lib/actions';
+import ProductBox from './components/ProductBox';
 
 export const getCart = async () => {
   const email = await getEmailAddress();
@@ -36,39 +37,7 @@ export default async function CartPage() {
         <div className='col-span-7'>
           {data?.length ? (
             data?.map((item) => {
-              return (
-                <div
-                  key={item.cartItemId}
-                  className='border-[1px] bg-white mb-4 border-slate-200 flex items-start p-4 rounded-md gap-4'
-                >
-                  <div className='min-w-20 min-h-[100px] relative '>
-                    <Image
-                      src={`/webDev.jpg`}
-                      alt='cart-item-img'
-                      fill='auto'
-                      className='rounded-md'
-                    />
-                  </div>
-
-                  <div className='grow flex justify-between gap-4'>
-                    <div>
-                      <h1 className='font-bold text-lg'>{item?.name || ''}</h1>
-                      <p className='text-slate-500'>
-                        {item?.description || ''}
-                      </p>
-                    </div>
-                    <div className='h-full min-h-[100px] flex flex-col justify-between items-end min-w-[100px]'>
-                      <p className='font-bold text-lg'>{`$ ${
-                        item?.price || `0.00`
-                      }`}</p>
-                      <RemoveFromCartBtn
-                        id={item.cartItemId}
-                        removeProduct={removeItem}
-                      />
-                    </div>
-                  </div>
-                </div>
-              );
+              return <ProductBox item={item} />;
             })
           ) : (
             <p>No items in your cart</p>

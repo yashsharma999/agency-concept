@@ -57,7 +57,6 @@ export default function HandleNext({ cart }) {
   };
 
   const handleLead = (values) => {
-    console.log(values);
     sendEmail(values.email);
     setState(1);
   };
@@ -67,7 +66,6 @@ export default function HandleNext({ cart }) {
       recipientEmail: email,
       cart: cart,
     });
-    console.log('res', resp);
   };
 
   return (

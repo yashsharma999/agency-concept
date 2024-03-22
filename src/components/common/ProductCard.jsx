@@ -22,7 +22,7 @@ import { Button } from '../ui/button';
 export default async function ProductCard({ data }) {
   const cartData = await getCart();
   const inCart = cartData?.find((item) => item.productId === data?._id);
-  console.log('cart data', cartData);
+
   const addProduct = async () => {
     'use server';
     const email = await getEmailAddress();
@@ -33,6 +33,7 @@ export default async function ProductCard({ data }) {
         price: data?.selling_price || 0,
         email: email,
         productId: data._id,
+        image: data.image,
       },
     });
 

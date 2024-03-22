@@ -31,4 +31,5 @@ model CartItem {
   name String
   description String
   productId String @unique
+  image Json?
 }

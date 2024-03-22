@@ -7,10 +7,14 @@ import { toast } from 'sonner';
 
 export default function AddToCartBtn({ data, addProduct, className }) {
   const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+
   return (
     <Button
       onClick={async () => {
+        setLoading(true);
         await addProduct(data);
+        setLoading(false);
         toast('Added to cart', {
           description: `${data.title} added to cart`,
           action: {
@@ -21,7 +25,7 @@ export default function AddToCartBtn({ data, addProduct, className }) {
       }}
       className={className ? className : ''}
     >
-      Add to cart
+      {loading ? 'Loading' : 'Add to cart'}
     </Button>
   );
 }

@@ -49,7 +49,6 @@ export default function ContactUsSheet() {
   });
 
   const submit = (values) => {
-    console.log('came here', values);
     form.reset();
   };
 

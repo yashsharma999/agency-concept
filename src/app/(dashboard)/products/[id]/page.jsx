@@ -12,7 +12,6 @@ import { getCart } from '../../cart/page';
 
 export default async function ProductDetailsPage({ params }) {
   const cartData = await getCart();
-  console.log('cart data', cartData);
 
   const data = await client.fetch(
     `*[_type == "product" && _id == $id]`,

@@ -1,14 +1,10 @@
-import { PrismaClient } from '@prisma/client';
 import React from 'react';
-import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
 import getEmailAddress from '@/lib/getCurrentEmail';
-import RemoveFromCartBtn from './components/RemoveFromCartBtn';
 import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/client';
-import { removeItem } from '@/lib/actions';
 import ProductBox from './components/ProductBox';
+import CreateOrder from './components/CreateOrder';
 
 export const getCart = async () => {
   const email = await getEmailAddress();
@@ -20,6 +16,32 @@ export const getCart = async () => {
   });
 
   return data;
+};
+
+const createOrder = async () => {
+  'use server';
+  try {
+    const email = await getEmailAddress();
+    const cartData = await getCart();
+
+    await prisma.order.create({
+      data: {
+        email,
+        cart: cartData,
+      },
+    });
+
+    // clear the cart after succesfull order is placed
+    await prisma.cartItem.deleteMany({
+      where: {
+        email,
+      },
+    });
+
+    revalidatePath('/cart');
+  } catch (error) {
+    console.log('error in create order', error);
+  }
 };
 
 export default async function CartPage() {
@@ -37,7 +59,7 @@ export default async function CartPage() {
         <div className='col-span-7'>
           {data?.length ? (
             data?.map((item) => {
-              return <ProductBox item={item} />;
+              return <ProductBox item={item} key={item.cartItemId} />;
             })
           ) : (
             <p>No items in your cart</p>
@@ -61,7 +83,7 @@ export default async function CartPage() {
               <p>{`$ ${total}`}</p>
             </div>
           </div>
-          <Button className='w-full mt-4'>Checkout</Button>
+          <CreateOrder createOrder={createOrder} />
         </div>
       </div>
     </section>

@@ -25,11 +25,28 @@ model CartItem {
   cartItemId  String @id @default(auto()) @map("_id") @db.ObjectId
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  cart         Cart     @relation(fields: [email], references: [email])
-  email String
+  cart         Cart?     @relation(fields: [email], references: [email])
+  email String  
   price Int
   name String
   description String
-  productId String @unique
+  productId String 
   image Json?
+}
+
+model Order {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String 
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  status OrderStatus @default(IN_PROCESS) 
+  cart Json
+}
+
+enum OrderStatus {
+ IN_PROCESS
+ DISCOVERY_CALL
+ PROJECT_STARTED
+ COMPLETED
+ CLOSED
 }

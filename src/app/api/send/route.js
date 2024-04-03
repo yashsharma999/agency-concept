@@ -1,4 +1,3 @@
-import NewLead from '@/components/emailTemplates/newLead';
 import LeadEmail from '../../../react-email-starter/emails';
 import { Resend } from 'resend';
 

@@ -20,7 +20,7 @@ export default function NewLead({ priceRange, cart }) {
         ensuring a seamless collaboration.
         <br />
         Best Regards,
-        <br /> Yash Sharma, Founder, <strong>Dropservicing</strong>
+        <br /> Yash Sharma, Founder, <strong>Agencio</strong>
       </h1>
     </div>
   );

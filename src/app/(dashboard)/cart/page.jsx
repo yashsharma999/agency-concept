@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/client';
 import ProductBox from './components/ProductBox';
 import CreateOrder from './components/CreateOrder';
+import axios from 'axios';
 
 export const getCart = async () => {
   const email = await getEmailAddress();
@@ -16,6 +17,13 @@ export const getCart = async () => {
   });
 
   return data;
+};
+
+const sendEmail = async (email, cart) => {
+  const resp = await axios.post('http://localhost:3000/api/send', {
+    recipientEmail: email,
+    cart,
+  });
 };
 
 const createOrder = async () => {
@@ -37,6 +45,8 @@ const createOrder = async () => {
         email,
       },
     });
+
+    await sendEmail(email, cartData);
 
     revalidatePath('/cart');
   } catch (error) {

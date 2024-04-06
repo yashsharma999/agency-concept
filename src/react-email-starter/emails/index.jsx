@@ -60,12 +60,12 @@ export default function LeadEmail({ cart }) {
                   {cart?.map((item, i) => (
                     <Row key={i} className='mb-2'>
                       <Column key={i} className={'text-sm'}>
-                        {item.title}
+                        {item.name}
                       </Column>
                       <Column
                         className='text-right text-sm'
                         key={i}
-                      >{`${item.price[0]}-${item.price[1]}`}</Column>
+                      >{`${item.price}`}</Column>
                     </Row>
                   ))}
                 </Section>

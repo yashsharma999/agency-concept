@@ -1,5 +1,3 @@
-'use client';
-
 export default function NewLead({ priceRange, cart }) {
   return (
     <div className='p-8'>

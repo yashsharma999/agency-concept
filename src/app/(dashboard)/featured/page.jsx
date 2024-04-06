@@ -1,5 +1,4 @@
 import ProductCard from '@/components/common/ProductCard';
-import { services } from '@/constants';
 import React from 'react';
 import { client } from '../../../../sanity/lib/client';
 

@@ -1,5 +1,6 @@
 import LeadEmail from '../../../react-email-starter/emails';
 import { Resend } from 'resend';
+import { auth } from '@clerk/nextjs';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

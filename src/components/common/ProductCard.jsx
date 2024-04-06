@@ -41,13 +41,14 @@ export default async function ProductCard({ data }) {
   };
 
   return (
-    <Card className={`max-w-[250px] h-full flex flex-col justify-between`}>
+    <Card className={`sm:max-w-[250px] h-full flex flex-col justify-between`}>
       <CardHeader>
         <div className='relative h-[100px] w-full'>
           <Image
             src={urlForImage(data.image)}
             className='w-full rounded-md mb-1'
             fill='auto'
+            objectFit='contain'
             alt='web dev'
           />
         </div>

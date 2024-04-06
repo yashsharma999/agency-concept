@@ -8,7 +8,7 @@ export default function ProductBox({ item }) {
   return (
     <div
       key={item.cartItemId}
-      className='border-[1px] bg-white mb-4 border-slate-200 flex items-start p-4 rounded-md gap-4'
+      className='border-[1px] bg-white mb-4 border-slate-200 flex flex-col sm:flex-row items-start p-4 rounded-md gap-4'
     >
       <div className='min-w-20 min-h-[100px] relative '>
         <Image

@@ -8,7 +8,7 @@ export const montserrat = Montserrat({ subsets: ['latin'] });
 export default function DashboardLayout({ children }) {
   return (
     <AppProviders>
-      <div className={`max-w-5xl mx-auto py-4 ${montserrat.className}`}>
+      <div className={`max-w-5xl px-4 mx-auto py-4 ${montserrat.className}`}>
         <Navigation menu={appMenu} />
         {children}
       </div>

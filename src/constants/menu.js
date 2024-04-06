@@ -4,6 +4,7 @@ const { default: ContactUsSheet } = require('@/components/ContactUsSheet');
 const { default: CartBtn } = require('@/components/CartBtn');
 const { Button } = require('@/components/ui/button');
 const { default: Link } = require('next/link');
+const icon = require('@/assets/icons/featured.svg');
 
 export const homeNavMenu = [
   {
@@ -28,6 +29,24 @@ export const homeNavMenu = [
   },
 ];
 
+export const AccountBtn = () => {
+  return (
+    <div className='flex'>
+      <SignedIn>
+        {/* Mount the UserButton component */}
+        <UserButton />
+      </SignedIn>
+
+      <SignedOut>
+        <Button>
+          {/* Signed out users get sign in button */}
+          <SignInButton />
+        </Button>
+      </SignedOut>
+    </div>
+  );
+};
+
 export const appMenu = [
   {
     label: 'Featured',
@@ -51,20 +70,6 @@ export const appMenu = [
   },
   {
     custom: true,
-    element: (
-      <div className='flex'>
-        <SignedIn>
-          {/* Mount the UserButton component */}
-          <UserButton />
-        </SignedIn>
-
-        <SignedOut>
-          <Button>
-            {/* Signed out users get sign in button */}
-            <SignInButton />
-          </Button>
-        </SignedOut>
-      </div>
-    ),
+    element: <AccountBtn />,
   },
 ];

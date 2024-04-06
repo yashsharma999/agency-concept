@@ -11,7 +11,7 @@ export default function OrderCard({ data }) {
         <h1>
           Order ID: <span className='font-bold'>{data?.id || ''}</span>
         </h1>
-        <h1>
+        <h1 className='hidden sm:flex'>
           Created at:{' '}
           <span className='font-bold'>
             {`${dayjs(data?.createdAt).format('DD-MMM-YYYY')}, ${dayjs(
@@ -20,6 +20,14 @@ export default function OrderCard({ data }) {
           </span>
         </h1>
       </div>
+      <h1 className='sm:hidden'>
+        Created at:{' '}
+        <span className='font-bold'>
+          {`${dayjs(data?.createdAt).format('DD-MMM-YYYY')}, ${dayjs(
+            data?.createdAt
+          ).format('hh:mm a')}`}
+        </span>
+      </h1>
       <h1>
         Status: <span className='font-bold'>{data?.status || ''}</span>
       </h1>

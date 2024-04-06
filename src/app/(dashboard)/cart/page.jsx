@@ -66,7 +66,7 @@ export default async function CartPage() {
     <section className='mt-4'>
       <h1 className='font-bold text-xl mb-4'>Cart</h1>
       <div className='grid grid-cols-10 gap-2'>
-        <div className='col-span-7'>
+        <div className='col-span-10 sm:col-span-7'>
           {data?.length ? (
             data?.map((item) => {
               return <ProductBox item={item} key={item.cartItemId} />;
@@ -75,7 +75,7 @@ export default async function CartPage() {
             <p>No items in your cart</p>
           )}
         </div>
-        <div className='col-span-3 '>
+        <div className='col-span-10 sm:col-span-3 '>
           <div className='bg-white rounded-md h-fit p-4'>
             <h2 className='text-center'>Summary</h2>
             <Separator className='my-4' />

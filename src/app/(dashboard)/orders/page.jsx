@@ -18,7 +18,7 @@ export default async function page() {
   const data = await getOrders();
 
   return (
-    <div className='mx-auto max-w-[80%] mt-8'>
+    <div className='mx-auto w-full sm:max-w-[80%] mt-8'>
       {/* <h1 className='mb-4 text-2xl'>Orders</h1> */}
       {data?.map((item) => {
         return <OrderCard data={item} key={item.id} />;

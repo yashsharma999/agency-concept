@@ -14,7 +14,7 @@ export default async function FeaturedPage() {
   );
 
   return (
-    <div className='grid grid-cols-4 gap-8 mt-8 mx-auto'>
+    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8 mx-auto'>
       {data?.map((service, i) => (
         <ProductCard key={i} data={service} />
       ))}

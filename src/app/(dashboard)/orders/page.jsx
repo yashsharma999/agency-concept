@@ -10,7 +10,6 @@ const getOrders = async () => {
       email,
     },
   });
-  console.dir(data, { depth: null });
   return data;
 };
 

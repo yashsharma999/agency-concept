@@ -14,7 +14,6 @@ export default function CreateOrder({ createOrder }) {
 
   const handleClick = async () => {
     try {
-      console.log('came here');
       setLoading(true);
       await handleCreateOrder();
 

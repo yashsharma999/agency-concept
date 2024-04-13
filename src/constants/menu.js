@@ -4,20 +4,21 @@ const { default: ContactUsSheet } = require('@/components/ContactUsSheet');
 const { default: CartBtn } = require('@/components/CartBtn');
 const { Button } = require('@/components/ui/button');
 const { default: Link } = require('next/link');
-const icon = require('@/assets/icons/featured.svg');
 
 export const homeNavMenu = [
+  // {
+  //   label: 'Home',
+  //   href: '/',
+  // },
   {
-    label: 'Home',
-    href: '/',
-  },
-  {
-    label: 'How it works',
-    href: '/how-it-works',
+    custom: true,
+    element: <Button variant='ghost'>How it works</Button>,
+    home: true,
   },
   {
     custom: true,
     element: <ContactUsSheet />,
+    home: true,
   },
   {
     custom: true,
@@ -26,6 +27,7 @@ export const homeNavMenu = [
         <Button>Go to App</Button>
       </Link>
     ),
+    home: true,
   },
 ];
 
@@ -68,8 +70,8 @@ export const appMenu = [
     custom: true,
     element: <CartBtn />,
   },
-  {
-    custom: true,
-    element: <AccountBtn />,
-  },
+  // {
+  //   custom: true,
+  //   element: <AccountBtn />,
+  // },
 ];

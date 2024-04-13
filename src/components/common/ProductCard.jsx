@@ -65,10 +65,14 @@ export default async function ProductCard({ data }) {
             View details
           </Button>
         </Link>
-        <div className='flex w-full justify-between'>
+        <div className='flex w-full justify-between items-center'>
           <div className='flex flex-col'>
             <p>{`$ ${data?.selling_price}`}</p>
-            <p className='line-through text-sm text-slate-400'>{`$ ${data?.original_price}`}</p>
+            {data?.original_price && (
+              <p className='line-through text-sm text-slate-400'>
+                {`$ ${data?.original_price}`}
+              </p>
+            )}
           </div>
           {inCart ? (
             <RemoveFromCartBtn

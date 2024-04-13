@@ -9,6 +9,7 @@ import getEmailAddress from '@/lib/getCurrentEmail';
 import prisma from '@/lib/client';
 import { revalidatePath } from 'next/cache';
 import { getCart } from '../../cart/page';
+import { Separator } from '@/components/ui/separator';
 
 export default async function ProductDetailsPage({ params }) {
   const cartData = await getCart();
@@ -47,7 +48,7 @@ export default async function ProductDetailsPage({ params }) {
         <h1 className='text-center mb-8 text-2xl font-bold'>
           {data?.[0].title}
         </h1>
-        <div className='grid grid-cols-2 gap-8 product-details'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 product-details'>
           <div className='flex flex-col gap-4'>
             <div className='relative h-[300px] w-full'>
               <Image
@@ -69,9 +70,11 @@ export default async function ProductDetailsPage({ params }) {
               />
             </div>
           </div>
-          <div className='flex flex-col gap-2'>
-            <PortableText value={data?.[0]?.details ?? []}></PortableText>
-          </div>
+          <div>{data?.[0].description ?? ''}</div>
+        </div>
+        <Separator className='my-8' />
+        <div className='flex flex-col gap-2 product-details'>
+          <PortableText value={data?.[0]?.details ?? []}></PortableText>
         </div>
       </section>
     );

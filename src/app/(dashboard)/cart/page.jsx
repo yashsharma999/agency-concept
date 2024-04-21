@@ -19,8 +19,15 @@ export const getCart = async () => {
   return data;
 };
 
+console.log('process.env', process.env.NODE_ENV);
+
 const sendEmail = async (email, cart) => {
-  const resp = await axios.post('http://localhost:3000/api/send', {
+  const url =
+    process.env.NODE_ENV === 'development'
+      ? `http://localhost:${process.env.PORT}`
+      : '';
+
+  const resp = await axios.post(`${url}/api/send`, {
     recipientEmail: email,
     cart,
   });

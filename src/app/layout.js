@@ -8,8 +8,8 @@ const inter = Inter({ subsets: ['latin'] });
 export const montserrat = Montserrat({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Drop-It Joy',
-  description: 'Curate your solution. Just drag and drop!',
+  title: 'BetterSide',
+  description: 'Services for your business.',
 };
 
 export default function RootLayout({ children }) {

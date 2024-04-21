@@ -7,7 +7,7 @@ export const heroFont = localFont({
 
 export default function HeroSection() {
   return (
-    <section className='font-cal mt-20 text-center relative'>
+    <section className='font-cal px-2 mt-20 text-center relative'>
       <h1
         className={`font-bold text-[52px] md:text-[80px]  ${heroFont.className}`}
       >
@@ -16,10 +16,10 @@ export default function HeroSection() {
       <h2 className='mt-4 text-[20px] md:text-[24px] font-light'>
         Keeping It Simple, Making It Exceptional
       </h2>
-      <h3 className='text md:text-lg font-bold text-slate-500 mt-8 max-w-[40ch] mx-auto'>
+      {/* <h3 className='text md:text-lg font-bold text-slate-500 mt-8 max-w-[40ch] mx-auto'>
         Simplifying your growth journey. Chose the best solutions for a fixed
         price.
-      </h3>
+      </h3> */}
 
       <div className='flex justify-center md:justify-between flex-wrap gap-4 my-20'>
         {[

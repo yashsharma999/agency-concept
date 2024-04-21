@@ -19,15 +19,8 @@ export const getCart = async () => {
   return data;
 };
 
-console.log('process.env', process.env.NODE_ENV);
-
 const sendEmail = async (email, cart) => {
-  const url =
-    process.env.NODE_ENV === 'development'
-      ? `http://localhost:${process.env.PORT}`
-      : '';
-
-  const resp = await axios.post(`${url}/api/send`, {
+  const resp = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/send`, {
     recipientEmail: email,
     cart,
   });
@@ -54,10 +47,10 @@ const createOrder = async () => {
     });
 
     await sendEmail(email, cartData);
-
-    revalidatePath('/cart');
   } catch (error) {
     console.log('error in create order', error);
+  } finally {
+    revalidatePath('/cart');
   }
 };
 

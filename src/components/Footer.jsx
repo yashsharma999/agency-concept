@@ -1,10 +1,12 @@
 import React from 'react';
+import Logo from './common/Logo';
 import { Separator } from './ui/separator';
 
 export default function Footer() {
   return (
-    <div className='px-4 my-4'>
-      <Separator />
-    </div>
+    <footer className='px-4 my-4'>
+      <Separator className='mb-4' />
+      <Logo />
+    </footer>
   );
 }

@@ -12,7 +12,11 @@ export const homeNavMenu = [
   // },
   {
     custom: true,
-    element: <Button variant='ghost'>How it works</Button>,
+    element: (
+      <Link href={'#how-it-works'}>
+        <Button variant='ghost'>How it works</Button>
+      </Link>
+    ),
     home: true,
   },
   {

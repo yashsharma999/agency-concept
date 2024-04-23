@@ -26,7 +26,7 @@ export default function Projects() {
             link={project?.link}
           />
         ))}
-        <Card className='border-dashed bg-slate-50'>
+        <Card className='border-black border-dashed bg-slate-50'>
           <CardContent className='pt-4'>
             <CardTitle className='my-2 text-slate-300'>
               {'Your Project'}

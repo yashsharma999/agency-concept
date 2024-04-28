@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
       <html lang='en'>
         <body
           className={`${inter.className}`}
-          style={{
-            background: 'whitesmoke',
-          }}
+          // style={{
+          //   background: 'whitesmoke',
+          // }}
         >
           {children}
           <Toaster />

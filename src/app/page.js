@@ -10,13 +10,20 @@ import { montserrat } from './layout';
 
 export default function Home() {
   return (
-    <div className={`max-w-5xl mx-auto pb-4 `}>
-      <Navigation menu={homeNavMenu} />
-      <HeroSection />
-      <HowItWorks />
-      <Projects />
-      <ServicesOffered />
-      <Footer />
+    <div className={``}>
+      <div className='bg-[#f9f9fb]'>
+        <div className='max-w-[1200px] mx-auto pb-4  '>
+          <Navigation menu={homeNavMenu} />
+          <HeroSection />
+        </div>
+      </div>
+      <div className='max-w-[1200px] mx-auto pb-4  '>
+        <HowItWorks />
+        <Projects />
+        <ServicesOffered />
+        <Footer />
+      </div>
+
       {/* <HandleNext /> */}
     </div>
   );

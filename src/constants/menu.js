@@ -27,8 +27,8 @@ export const homeNavMenu = [
   {
     custom: true,
     element: (
-      <Link href={'/featured'}>
-        <Button>Go to App</Button>
+      <Link className='w-full' href={'/featured'}>
+        <Button className='w-full'>Go to App</Button>
       </Link>
     ),
     home: true,

@@ -31,7 +31,7 @@ export default function Navigation({ menu }) {
       {/* ya toh landing page ho ya fir desktop view ho toh dikhana hai */}
       {landingPage || isDesktop ? (
         <div className='border-[1px] border-slate-100 w-screen '>
-          <div className='max-w-[1200px] mx-auto flex items-center justify-between  py-3 px-8 '>
+          <div className='backdrop-blur-lg	 max-w-[1200px] mx-auto flex items-center justify-between  py-3 px-8 '>
             <div className=''>
               <Logo />
             </div>
@@ -52,7 +52,8 @@ export default function Navigation({ menu }) {
                           <NavigationMenuLink
                             style={{
                               background:
-                                pathname.includes(menu.href) && 'whitesmoke',
+                                pathname.includes(menu.href) && 'black',
+                              color: pathname.includes(menu.href) && 'white',
                             }}
                             className={navigationMenuTriggerStyle()}
                           >

@@ -17,8 +17,14 @@ export default function Footer() {
 
         <div className='flex flex-col gap-2'>
           <h1 className='font-bold'>Legal</h1>
-          <Link className='text-sm' href={'#'}>{`Terms & Conditions`}</Link>
-          <Link className='text-sm' href={'#'}>{`Privacy Policy`}</Link>
+          <Link
+            className='text-sm'
+            href={'termsAndConditions'}
+          >{`Terms & Conditions`}</Link>
+          <Link
+            className='text-sm'
+            href={'privacyPolicy'}
+          >{`Privacy Policy`}</Link>
         </div>
         <div className='flex flex-col gap-2'>
           <h1 className='font-bold'>Social</h1>

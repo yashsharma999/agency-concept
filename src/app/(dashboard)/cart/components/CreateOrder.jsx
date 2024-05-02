@@ -25,6 +25,7 @@ export default function CreateOrder({ createOrder }) {
         },
       });
     } catch (error) {
+      console.log('err', error);
     } finally {
       setLoading(false);
     }

@@ -25,7 +25,6 @@ export default function Navigation({ menu }) {
   const landingPage = pathname === '/';
   const { width } = useWindowSize();
   const isDesktop = width > 768;
-  console.log('isDesktop', isDesktop, width);
   return (
     <div className='relative flex flex-col justify-center items-center'>
       {/* ya toh landing page ho ya fir desktop view ho toh dikhana hai */}

@@ -14,7 +14,7 @@ export async function POST(request) {
     }
 
     const data = await resend.emails.send({
-      from: 'Yash <onboarding@yashsharma.tech>',
+      from: 'Yash <onboarding@betterside.fun>',
       to: [recipientEmail],
       subject: 'Acknowledgment of Your Inquiry',
       react: <LeadEmail recipientEmail={recipientEmail} cart={cart} />,

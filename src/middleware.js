@@ -6,6 +6,7 @@ export default authMiddleware({
     '/',
     '/featured',
     '/products',
+    '/products/:id',
     '/deals',
     '/privacyPolicy',
     '/termsAndConditions',

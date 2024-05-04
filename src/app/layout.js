@@ -3,6 +3,7 @@ import './globals.css';
 import bgTexture from '../assets/bgTexture.png';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from '@/components/ui/sonner';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 export const montserrat = Montserrat({ subsets: ['latin'] });
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
           //   background: 'whitesmoke',
           // }}
         >
+          <Analytics />
           {children}
           <Toaster />
         </body>

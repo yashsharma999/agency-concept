@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className='px-4 my-4 py-[60px]'>
       {/* <Separator className='mb-4' /> */}
-      <div className='w-full flex flex-col md:flex-row gap-8 md:gap-0 justify-center items-center text-center md:text-left md:justify-between'>
+      <div className='w-full flex flex-col md:flex-row gap-8 md:gap-0 justify-center items-center md:items-start text-center md:text-left md:justify-between'>
         <div className='flex flex-col gap-2'>
           <Logo />
           <p className='text-sm'>&copy; 2024 BetterSide</p>

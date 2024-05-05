@@ -10,7 +10,17 @@ export const montserrat = Montserrat({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'BetterSide',
-  description: 'Services for your business.',
+  description: 'The complete toolkit for growing your business',
+  keywords: [
+    'Digital Marketing',
+    'Artificial Intelligence',
+    'Virtual Reality',
+    'Web development',
+    'App Development',
+    'Content Creation',
+    'Services',
+    'Agency',
+  ],
 };
 
 export default function RootLayout({ children }) {

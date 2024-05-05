@@ -21,6 +21,7 @@ export const metadata = {
     'Services',
     'Agency',
   ],
+  metadataBase: new URL('https://www.betterside.fun'),
 };
 
 export default function RootLayout({ children }) {

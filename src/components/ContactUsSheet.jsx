@@ -49,7 +49,15 @@ export default function ContactUsSheet() {
   });
 
   const submit = (values) => {
+    alert('vale', values);
     form.reset();
+  };
+
+  const stopPropagate = (callback) => {
+    return (e) => {
+      e.stopPropagation();
+      callback(e);
+    };
   };
 
   return (
@@ -66,6 +74,7 @@ export default function ContactUsSheet() {
         </SheetHeader>
         <Form {...form}>
           <form
+            //onSubmit={form.handleSubmit(submit)}
             onSubmit={form.handleSubmit(submit)}
             className='!mt-[30px] space-y-4'
           >

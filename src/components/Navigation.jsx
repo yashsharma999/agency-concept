@@ -22,7 +22,7 @@ import { useWindowSize } from '@uidotdev/usehooks';
 
 export default function Navigation({ menu }) {
   const pathname = usePathname();
-  const landingPage = pathname === '/';
+  const landingPage = pathname === '/' || pathname === '/contact';
   const { width } = useWindowSize();
   const isDesktop = width > 768;
   return (
@@ -116,7 +116,7 @@ export default function Navigation({ menu }) {
                 </SheetContent>
               </Sheet>
             </div>
-            {pathname !== '/' && (
+            {!landingPage && (
               <div className='hidden md:flex'>
                 <AccountBtn />
               </div>

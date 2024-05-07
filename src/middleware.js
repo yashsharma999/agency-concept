@@ -10,6 +10,7 @@ export default authMiddleware({
     '/deals',
     '/privacyPolicy',
     '/termsAndConditions',
+    '/contact',
   ],
   // Routes that can always be accessed, and have
   // no authentication information

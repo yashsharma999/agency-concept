@@ -21,7 +21,11 @@ export const homeNavMenu = [
   },
   {
     custom: true,
-    element: <ContactUsSheet />,
+    element: (
+      <Link href={'/contact'}>
+        <Button variant='ghost'>Contact Us</Button>
+      </Link>
+    ),
     home: true,
   },
   {

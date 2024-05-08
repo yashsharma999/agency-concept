@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Form,
   FormControl,
@@ -17,6 +17,8 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import Navigation from '@/components/Navigation';
 import { homeNavMenu } from '@/constants';
+import axios from 'axios';
+import { toast } from 'sonner';
 
 const schema = yup
   .object({
@@ -31,6 +33,8 @@ const schema = yup
   .required();
 
 export default function ContactUsPage() {
+  const [loading, setLoading] = useState(false);
+  let count = localStorage.getItem('contact_count');
   const form = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -41,12 +45,50 @@ export default function ContactUsPage() {
   });
 
   const submit = (values) => {
-    alert('vale', values);
+    if (count > 1) {
+      return toast('No spam messages!', {
+        description: `Please don't spam message`,
+      });
+    }
+    const { name, email, message } = values;
+    sendEmail(name, email, message);
     form.reset();
   };
 
+  const sendEmail = async (name, email, message) => {
+    try {
+      setLoading(true);
+      const resp = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/send`,
+        {
+          recipientEmail: 'syash5575@gmail.com',
+          name,
+          email,
+          message,
+          contact: true,
+        }
+      );
+      if (resp) {
+        if (count) {
+          localStorage.setItem('contact_count', Number(count) + 1);
+        } else {
+          localStorage.setItem('contact_count', 1);
+        }
+        toast('Message sent', {
+          description: `Your message has been sent successfully. We'll reach out to you asap.`,
+        });
+      }
+    } catch (error) {
+      toast('Some error occured', {
+        description: `Unfortunately, some error occured. You can still reach out to us at syash5575@gmail.com`,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className='max-w-[1200px] mx-auto pb-4  '>
+    <div className='max-w-[1200px] mx-auto pb-4 px-4  '>
       <Navigation menu={homeNavMenu} />
       <Form {...form}>
         <form
@@ -94,7 +136,9 @@ export default function ContactUsPage() {
             )}
           />
 
-          <Button type='submit'>Save changes</Button>
+          <Button disabled={loading} type='submit'>
+            Send Message
+          </Button>
         </form>
       </Form>
     </div>

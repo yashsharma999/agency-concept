@@ -10,15 +10,15 @@ export const homeNavMenu = [
   //   label: 'Home',
   //   href: '/',
   // },
-  {
-    custom: true,
-    element: (
-      <Link href={'#how-it-works'}>
-        <Button variant='ghost'>How it works</Button>
-      </Link>
-    ),
-    home: true,
-  },
+  // {
+  //   custom: true,
+  //   element: (
+  //     <Link href={'#how-it-works'}>
+  //       <Button variant='ghost'>How it works</Button>
+  //     </Link>
+  //   ),
+  //   home: true,
+  // },
   {
     custom: true,
     element: (
